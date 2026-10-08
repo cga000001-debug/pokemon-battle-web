@@ -1,0 +1,17 @@
+{# Fragmento reutilizable: tarjeta de un Pokémon. Uso: {% include '_pokemon_card.html' %} con la variable `pokemon` #}
+<li class="card">
+    <a class="card__link" href="{{ url_for('pokemon_detail', pokemon_id=pokemon.id) }}">
+        <span class="card__id">#{{ '%03d' | format(pokemon.id) }}</span>
+        <img class="card__img"
+             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pokemon.id }}.png"
+             alt="Ilustración de {{ pokemon.name | capitalize }}"
+             width="475" height="475" loading="lazy">
+        <h3 class="card__name">{{ pokemon.name | capitalize }}</h3>
+        <ul class="types">
+            {% for t in pokemon.types %}
+            <li class="type type--{{ t }}">{{ t | capitalize }}</li>
+            {% endfor %}
+        </ul>
+    </a>
+</li>
+ 
