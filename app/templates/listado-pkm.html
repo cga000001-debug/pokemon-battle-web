@@ -1,23 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Listado de Pokémon{% endblock %}
+{% block title %}Listado de Pokemon{% endblock %}
 
 {% block content %}
 <section class="section">
-    <div class ="section__head">
-        <h1>Pokemon</h1>
 
+    <h1>Bienvenid@, {{ trainer }}</h1>
+
+    <div class="section__head">
+        <h1>Listado Pokemon</h1>
     </div>
 
     <ul class="grid">
         {% for pokemon in pokemons %}
-            {% include '_pokemon_card.html' %}
+            {% include 'pokemon_card.html' %}
         {% endfor %}
     </ul>
 </section>
-
-  <div class="container">
-    <h2>Página listado Pokemon</h2>
-    
-  </div>
 {% endblock %}

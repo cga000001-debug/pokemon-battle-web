@@ -3,8 +3,26 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h2>Página principal</h2>
-    <p>Bienvenido a la web de pokemons</p>
-  </div>
+
+  <section class="form_trainer" >
+    <form method="POST" action="/">
+      <label for="trainer">Trainer:</label>
+      <input id="trainer" name="trainer" type="text" required minlength="3" maxlength="15">
+
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <section class="arena">
+    <a class="btn btn--primary" href="{{ url_for('listadoPokemon') }}">Ver listado de Pokemon</a>
+    
+    <img class="arena__pkm" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/382.png" alt="Kyogre">
+ 
+    <div class="arena__center">
+        <h1>¡Que empiece la batalla!</h1>
+        <p>En una batalla Pokemon se enfrentan dos entrenadores. Cada uno elige un movimiento por turno y gana el primero que deja sin PS al Pokemon rival.</p>
+    </div>
+ 
+    <img class="arena__pkm" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/383.png" alt="Groudon">
+  </section>
 {% endblock %}

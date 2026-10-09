@@ -225,6 +225,7 @@ h3 { font-size: 1.1rem; font-weight: 600; }
     background: var(--surface); border: 2px solid var(--line);
     border-radius: var(--radius-l); padding: 1.5rem;
 }
+.panel--wide { grid-column: 1 / -1; }
 
 .facts { margin: 0; display: grid; gap: .9rem; }
 .facts div { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px solid var(--line); padding-bottom: .6rem; }
@@ -263,4 +264,109 @@ h3 { font-size: 1.1rem; font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
+}
+
+/* ---------- Página principal: arena ---------- */
+.arena {
+    display: grid; grid-template-columns: 1fr 1.3fr 1fr; align-items: center; gap: 1rem;
+    padding: 2rem; border-radius: var(--radius-l);
+    background: linear-gradient(100deg, #3b82d6 0%, #3b82d6 42%, #b8894a 58%, #b8894a 100%);
+}
+.arena__pkm { width: 100%; max-width: 280px; justify-self: center; }
+.arena__center {
+    background: rgba(31, 42, 68, .92); color: #fff;
+    padding: 1.8rem; border-radius: var(--radius-l); text-align: center;
+}
+.arena__center h1 { color: #fff; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.arena__center p { margin: 0 0 1.4rem; color: #dfe5f2; }
+
+/* ---------- Formulario de entrenador ---------- */
+.form_trainer {
+    width: min(100%, 520px);
+    margin: 0 auto 2rem;
+    padding: 1.8rem 2rem;
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-l);
+    box-shadow: 0 8px 24px rgba(31, 42, 68, 0.08);
+}
+
+.form_trainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.form_trainer label {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+.form_trainer input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font: inherit;
+    color: var(--ink);
+    background: var(--bg);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-s);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form_trainer input::placeholder {
+    color: var(--ink-soft);
+}
+
+.form_trainer input:hover {
+    border-color: #aab5c8;
+}
+
+.form_trainer input:focus {
+    outline: none;
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(214, 40, 58, 0.12);
+}
+
+.form_trainer button {
+    align-self: flex-start;
+    margin-top: 0.4rem;
+    padding: 0.7rem 1.5rem;
+    font: 700 1rem var(--font-body);
+    color: #fff;
+    background: var(--red);
+    border: 2px solid var(--red);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s,
+                transform 0.2s;
+}
+
+.form_trainer button:hover {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+.form_trainer button:active {
+    transform: translateY(0);
+}
+
+.form_trainer button:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 3px;
+}
+
+/* ---------- Formulario responsive ---------- */
+@media (max-width: 760px) {
+    .form_trainer {
+        padding: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form_trainer button {
+        width: 100%;
+        align-self: stretch;
+    }
 }
