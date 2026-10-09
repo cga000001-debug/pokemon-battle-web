@@ -9,17 +9,17 @@ RUTA_DATOS = Path(__file__).resolve().parent.parent / "data" / "pokemons-legenda
 with RUTA_DATOS.open(encoding="utf-8") as f:
     DATOS = json.load(f)
 
-@app.route('/', methods=["GET","POST"])
+@app.route('/')
 def index():
-    if request.method == "POST":
-        trainer = request.form["trainer"]
-        return render_template('listado-pkm.html', pokemons=DATOS, trainer=trainer)
-    else:
-        return render_template('index.html')
+    return render_template('index.html')
         
-@app.route('/pokemons')
+@app.route('/pokemons', methods=["GET","POST"])
 def listadoPokemon():
-    return render_template('listado-pkm.html', pokemons=DATOS, trainer="trainer")
+    if request.method == "POST":
+        trainer = request.form["trainer"].strip()
+    else:
+        trainer = request.args.get("trainer", "")
+    return render_template('listado-pkm.html', pokemons=DATOS, trainer=trainer)
 
 @app.route('/pokemons/<int:id>')
 def pokemon(id):
