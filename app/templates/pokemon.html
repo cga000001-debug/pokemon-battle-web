@@ -40,6 +40,14 @@
                     </span>
                 </li>
                 {% endfor %}
+
+                {% set media = pokemon.stats | sum(attribute='value') / (pokemon.stats | length) %}
+                <div class="stats-media">
+                    <span class="stats-media__label">Media de estadísticas</span>
+                    <span class="stats-media__value">
+                        {{ "%.2f"|format(media) }}
+                    </span>
+                </div>  
             </ul>
         </section>
 

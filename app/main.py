@@ -32,4 +32,4 @@ def pokemon(id):
     return render_template('pokemon.html', pokemon = pokemon)
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 8080)
+    app.run(port=8080)
