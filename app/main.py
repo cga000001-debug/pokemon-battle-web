@@ -17,9 +17,10 @@ def index():
 def listadoPokemon():
     if request.method == "POST":
         trainer = request.form["trainer"].strip()
+        return render_template('listado-pkm.html', pokemons=DATOS, trainer=trainer)
     else:
-        trainer = request.args.get("trainer", "")
-    return render_template('listado-pkm.html', pokemons=DATOS, trainer=trainer)
+        return
+        
 
 @app.route('/pokemons/<int:id>')
 def pokemon(id):
@@ -30,6 +31,20 @@ def pokemon(id):
         return "Pokemon no encontrado", 404
     
     return render_template('pokemon.html', pokemon = pokemon)
+
+@app.route('/battle', methods=["GET", "POST"])
+def battle():
+    if request.method == "POST":
+        pokemon = request.form["pokemon"].strip().lower()
+        pokemonFound = False
+        for p in DATOS:
+            if(pokemon == p["name"]):
+                pokemonFound = True
+
+        if(pokemonFound):
+            return "Batalla"
+        else:
+            return "Pokemon no existe"
 
 if __name__ == '__main__':
     app.run(port=8080)

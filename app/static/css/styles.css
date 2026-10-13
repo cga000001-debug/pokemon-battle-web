@@ -41,7 +41,7 @@ h1, h2, h3 {
     margin: 0 0 .5em;
     color: var(--navy);
 }
-h1 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -.02em; }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -.02em; text-align: center;}
 h2 { font-size: 1.5rem; font-weight: 800; }
 h3 { font-size: 1.1rem; font-weight: 600; }
 
@@ -357,6 +357,99 @@ h3 { font-size: 1.1rem; font-weight: 600; }
     outline: 3px solid var(--red);
     outline-offset: 3px;
 }
+
+
+/* ---------- Formulario de Pokémon ---------- */
+.form_pokemon {
+    width: min(100%, 520px);
+    margin: 0 auto 2rem;
+    padding: 1.8rem 2rem;
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-l);
+    box-shadow: 0 8px 24px rgba(31, 42, 68, 0.08);
+}
+
+.form_pokemon form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.form_pokemon label {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--navy);
+}
+
+.form_pokemon input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font: inherit;
+    color: var(--ink);
+    background: var(--bg);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-s);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form_pokemon input::placeholder {
+    color: var(--ink-soft);
+}
+
+.form_pokemon input:hover {
+    border-color: #aab5c8;
+}
+
+.form_pokemon input:focus {
+    outline: none;
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(214, 40, 58, 0.12);
+}
+
+.form_pokemon button {
+    align-self: flex-start;
+    margin-top: 0.4rem;
+    padding: 0.7rem 1.5rem;
+    font: 700 1rem var(--font-body);
+    color: #fff;
+    background: var(--red);
+    border: 2px solid var(--red);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s,
+                transform 0.2s;
+}
+
+.form_pokemon button:hover {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+.form_pokemon button:active {
+    transform: translateY(0);
+}
+
+.form_pokemon button:focus-visible {
+    outline: 3px solid var(--red);
+    outline-offset: 3px;
+}
+
+/* ---------- Formulario de Pokémon responsive ---------- */
+@media (max-width: 760px) {
+    .form_pokemon {
+        padding: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form_pokemon button {
+        width: 100%;
+        align-self: stretch;
+    }
+}
+
 
 /* ---------- Formulario responsive ---------- */
 @media (max-width: 760px) {

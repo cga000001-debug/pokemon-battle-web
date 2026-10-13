@@ -7,12 +7,19 @@
 
     <h1>Bienvenid@, {{ trainer | default('trainer',true) }}</h1>
 
+    <section class="form_pokemon" >
+        <form method="POST" action="/battle">
+        <label for="pokemon">Escoge tu pokemon:</label>
+        <input id="pokemon" name="pokemon" type="text" required minlength="3" maxlength="15">
+
+        <button type="submit">Send</button>
+        </form>
+    </section>
+    
+
     <div class="section__head">
         <h1>Listado Pokemon</h1>
     </div>
-
-    
-
     <ul class="grid">
         {% for pokemon in pokemons %}
             {% include 'pokemon_card.html' %}

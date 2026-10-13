@@ -19,10 +19,6 @@
             <nav class="nav" aria-label="Principal">
                 <a href="{{ url_for('index') }}"
                    {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>Inicio</a>
-                <a href="{{ url_for('listadoPokemon') }}"
-                   {% if request.endpoint == 'listadoPokemon' %}aria-current="page"{% endif %}>Listado Pokemon</a>
-            </nav>
-
         </div>
     </header>
 
