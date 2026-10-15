@@ -9,17 +9,26 @@
 
     <section class="form_pokemon" >
         <form method="POST" action="/battle">
-        <label for="pokemon">Escoge tu pokemon:</label>
-        <input id="pokemon" name="pokemon" type="text" required minlength="3" maxlength="15">
+            <input type="hidden" name="trainer" value="{{ trainer }}">
 
-        <button type="submit">Send</button>
+            <label for="pokemon">Escoge tu pokemon:</label>
+            <input id="pokemon" name="pokemon" type="text">
+
+            <button type="submit">Send</button>
         </form>
     </section>
     
-
     <div class="section__head">
         <h1>Listado Pokemon</h1>
+        <ul class="types">
+            {% for t in pokemons.types %}
+                <li>
+                    <button class="type type--{{ t }}">{{ t }}</button>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
+    
     <ul class="grid">
         {% for pokemon in pokemons %}
             {% include 'pokemon_card.html' %}

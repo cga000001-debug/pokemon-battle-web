@@ -34,17 +34,22 @@ def pokemon(id):
 
 @app.route('/battle', methods=["GET", "POST"])
 def battle():
-    if request.method == "POST":
-        pokemon = request.form["pokemon"].strip().lower()
-        pokemonFound = False
-        for p in DATOS:
-            if(pokemon == p["name"]):
-                pokemonFound = True
+    if request.method == "GET":
+        return render_template('battle.html')
 
-        if(pokemonFound):
-            return "Batalla"
-        else:
-            return "Pokemon no existe"
+    pokemon = request.form["pokemon"].strip().lower()
+    trainer = request.form.get("trainer", "").strip()
+    error = None
+
+    if not pokemon:
+        error = "El nombre del pokemon es obligatorio"
+    elif not any(p["name"] == pokemon for p in DATOS):
+        error = "Pokemon no encontrado"
+
+    if error:
+        return error
+
+    return render_template('battle.html')
 
 if __name__ == '__main__':
     app.run(port=8080)
