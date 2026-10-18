@@ -8,6 +8,8 @@ RUTA_DATOS = Path(__file__).resolve().parent.parent / "data" / "pokemons-legenda
 
 with RUTA_DATOS.open(encoding="utf-8") as f:
     DATOS = json.load(f)
+for pokemon in DATOS:
+    pokemon["media"] = sum(stat["value"] for stat in pokemon["stats"]) / len(pokemon["stats"])
 
 @app.route('/')
 def index():
@@ -16,10 +18,41 @@ def index():
 @app.route('/pokemons', methods=["GET","POST"])
 def listadoPokemon():
     if request.method == "POST":
-        trainer = request.form["trainer"].strip()
-        return render_template('listado-pkm.html', pokemons=DATOS, trainer=trainer)
+        trainer = request.form.get("trainer","").strip()
     else:
-        return
+        trainer = request.args.get("trainer","").strip()
+
+    tipo = request.args.get("tipo","")
+    media = request.args.get("media", "")
+    
+    tipos_pokemon = sorted(set(t for pokemon in DATOS for t in pokemon["types"]))
+
+    pokemons_filtrados = DATOS
+
+    if tipo:
+        pokemons_filtrados = [
+            pokemon for pokemon in pokemons_filtrados
+            if tipo in pokemon["types"]
+        ]
+
+    if media:
+        if media == "baja":
+            pokemons_filtrados = [
+                pokemon for pokemon in pokemons_filtrados
+                if pokemon["media"] < 100
+            ]
+        elif media == "media":
+            pokemons_filtrados = [
+                pokemon for pokemon in pokemons_filtrados
+                if pokemon["media"] < 112
+            ]
+        elif media == "alta":
+            pokemons_filtrados = [
+                pokemon for pokemon in pokemons_filtrados
+                if pokemon["media"] > 112
+            ]
+
+    return render_template('listado-pkm.html', pokemons=pokemons_filtrados, trainer=trainer, tipos_pokemon=tipos_pokemon, tipo=tipo, media=media)
         
 
 @app.route('/pokemons/<int:id>')

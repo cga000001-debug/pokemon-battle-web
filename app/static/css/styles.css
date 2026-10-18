@@ -489,3 +489,64 @@ h3 { font-size: 1.1rem; font-weight: 600; }
     font-weight: 800;
     line-height: 1.2;
 }
+
+/* ---------- Filtros Pokemon ---------- */
+
+.form_filtros {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    border: 2px solid var(--line);
+}
+
+.form_filtros h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.form_filtros form {
+    margin-bottom: 1.5rem;
+}
+
+.form_filtros button {
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: 0.5rem 1rem;
+    transition: 0.2s;
+}
+
+.form_filtros button:hover {
+    transform: scale(1.1);
+}
+
+/* ---------- Media de estadísticas ---------- */
+
+.form_filtros button[value="baja"] {
+    background: #e8562a;
+    color: white;
+}
+
+.form_filtros button[value="media"] {
+    background: #e3b616;
+    color: black;
+}
+
+.form_filtros button[value="alta"] {
+    background: #3f9d4a;
+    color: white;
+}
+
+/* Botones seleccionados */
+
+.form_filtros button.seleccionado {
+    border: 3px solid #1f2a44;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #1f2a44;
+    transform: scale(1.05);
+}
+
+/* Separación entre botones de media */
+
+.types--media {
+    gap: 1rem;
+}

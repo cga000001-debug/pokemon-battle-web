@@ -20,19 +20,85 @@
     
     <div class="section__head">
         <h1>Listado Pokemon</h1>
-        <ul class="types">
-            {% for t in pokemons.types %}
-                <li>
-                    <button class="type type--{{ t }}">{{ t }}</button>
-                </li>
+    </div>
+
+    <section class="form_filtros">
+        <h2>Tipo de Pokemon</h2>
+
+        
+
+            <h2>Filtrar por tipo de Pokemon</h2>
+            
+            <form method="GET" action="/pokemons" class="form_filtros">
+                <input type="hidden" name="trainer" value="{{ trainer }}">  
+                <input type="hidden" name="media" value="{{ media }}">
+
+                <ul class="types">
+                    <li>
+                        <button type="submit" name="tipo" value="" class="type {% if not tipo %}seleccionados{% endif %}">
+                        Todos
+                        </button>
+                    </li>
+
+                    {% for t in tipos_pokemon %}
+                    <li>
+                        <button type="submit" name="tipo" value="{{ t }}" class="type type--{{ t }} {% if tipo == t %}seleccionado{% endif %}">
+                        {{ t | capitalize}}
+                        </button>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </form>
+
+            <h2>Filtrar por media de estadísticas</h2>
+            <form method="GET" action="/pokemons" class="form_filtros">
+                <input type="hidden" name="trainer" value="{{ trainer }}">  
+                <input type="hidden" name="tipo" value="{{ tipo }}">
+
+                <ul  class="types types--media">
+                    <li>
+                        <button type="submit" name="media" value="" class="type {% if not media %}seleccionado{% endif %}">
+                        Todos
+                        </button>
+                    </li>
+                    <li>
+                        <button type="submit" name="media" value="baja"
+                                class="type {% if media == 'baja' %}seleccionado{% endif %}">
+                            Baja (&lt;100)
+                        </button>
+                    </li>
+
+                    <li>
+                        <button type="submit" name="media" value="media"
+                                class="type {% if media == 'media' %}seleccionado{% endif %}">
+                            Media (100-112)
+                        </button>
+                    </li>
+
+                    <li>
+                        <button type="submit" name="media" value="alta"
+                                class="type {% if media == 'alta' %}seleccionado{% endif %}">
+                            Alta (≥112)
+                        </button>
+                    </li>
+                </ul>
+            </form>
+        
+    </section>
+    
+    {% if pokemons %}
+        <ul class="grid">
+            {% for pokemon in pokemons %}
+                {% include 'pokemon_card.html' %}
             {% endfor %}
         </ul>
-    </div>
-    
-    <ul class="grid">
-        {% for pokemon in pokemons %}
-            {% include 'pokemon_card.html' %}
-        {% endfor %}
-    </ul>
+
+    {% else %}
+
+        <p class="empty">
+            No se encontraron Pokemon con estos filtros.
+        </p>
+
+    {% endif %}
 </section>
 {% endblock %}
