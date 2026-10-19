@@ -84,17 +84,17 @@ def battle():
         error = "Pokemon no encontrado"
         return render_template('battle.html')
 
-    ataques = random.sample(pokemon["moves"], 4);
+    ataques = random.sample(pokemon["moves"], 4)
 
     listaRivales = [
         p for p in DATOS
-        if p["id"] != pokemon
+        if p["id"] != pokemon["id"]
     ]
 
-    pokemon_rival = random.choice(listaRivales);
+    pokemon_rival = random.choice(listaRivales)
 
 
-    return render_template('battle.html')
+    return render_template('battle.html', pokemon=pokemon, pokemon_rival=pokemon_rival, ataques=ataques, trainer=trainer)
 
 if __name__ == '__main__':
     app.run(port=8080)

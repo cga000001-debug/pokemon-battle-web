@@ -550,3 +550,172 @@ h3 { font-size: 1.1rem; font-weight: 600; }
 .types--media {
     gap: 1rem;
 }
+
+/* ---------- Página de batalla ---------- */
+
+.battle {
+    text-align: center;
+}
+
+.battle h1 {
+    margin-bottom: 1.5rem;
+}
+
+.battle__arena {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+
+    padding: 2rem;
+    margin-top: 2rem;
+
+    background: linear-gradient(
+        135deg,
+        #dce9ff 0%,
+        #ffffff 50%,
+        #ffe1e1 100%
+    );
+
+    border: 2px solid var(--line);
+    border-radius: var(--radius-l);
+}
+
+
+/* ---------- Pokemon ---------- */
+
+.battle__pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 1.5rem;
+
+    background: white;
+    border: 2px solid var(--line);
+    border-radius: var(--radius-l);
+}
+
+.battle__pokemon h2 {
+    margin-bottom: 1rem;
+}
+
+.battle__img {
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+}
+
+.battle__pokemon .types {
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+
+/* ---------- VS ---------- */
+
+.battle__vs {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--red);
+}
+
+
+/* ---------- Estadísticas ---------- */
+
+.battle__stats {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+
+    background: var(--bg);
+    border-radius: var(--radius-s);
+
+    text-align: left;
+}
+
+.battle__stats h3 {
+    text-align: center;
+}
+
+.battle__stats p {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.4rem 0;
+}
+
+
+/* ---------- Ataques ---------- */
+
+.battle__moves {
+    margin-top: 2rem;
+    padding: 2rem;
+
+    background: white;
+    border: 2px solid var(--line);
+    border-radius: var(--radius-l);
+}
+
+.battle__moves h2 {
+    margin-bottom: 1.5rem;
+}
+
+.battle__moves-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.battle__move {
+    padding: 1.5rem;
+
+    background: var(--bg);
+    border: 2px solid var(--line);
+    border-radius: var(--radius-s);
+
+    transition: 0.2s;
+}
+
+.battle__move:hover {
+    border-color: var(--red);
+    transform: translateY(-3px);
+}
+
+.battle__move h3 {
+    margin-bottom: 0.8rem;
+}
+
+.battle__move p {
+    margin-bottom: 0;
+}
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 760px) {
+
+    .battle__arena {
+        grid-template-columns: 1fr;
+    }
+
+    .battle__vs {
+        font-size: 2rem;
+    }
+
+    .battle__moves-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .battle__img {
+        width: 180px;
+        height: 180px;
+    }
+
+}
+
+.battle__img {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    margin: 1rem 0;
+}
