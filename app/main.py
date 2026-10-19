@@ -1,4 +1,4 @@
-import json
+import json, random
 from flask import Flask, render_template, request
 from pathlib import Path
 
@@ -70,17 +70,29 @@ def battle():
     if request.method == "GET":
         return render_template('battle.html')
 
-    pokemon = request.form["pokemon"].strip().lower()
+    nombre_pokemon = request.form["pokemon"].strip().lower()
     trainer = request.form.get("trainer", "").strip()
     error = None
 
-    if not pokemon:
-        error = "El nombre del pokemon es obligatorio"
-    elif not any(p["name"] == pokemon for p in DATOS):
-        error = "Pokemon no encontrado"
+    pokemon = next((p for p in DATOS if p["name"] == nombre_pokemon), None)
 
-    if error:
-        return error
+    if not nombre_pokemon:
+        error = "El nombre del pokemon es obligatorio"
+        return render_template('battle.html')
+    
+    if pokemon is None:
+        error = "Pokemon no encontrado"
+        return render_template('battle.html')
+
+    ataques = random.sample(pokemon["moves"], 4);
+
+    listaRivales = [
+        p for p in DATOS
+        if p["id"] != pokemon
+    ]
+
+    pokemon_rival = random.choice(listaRivales);
+
 
     return render_template('battle.html')
 

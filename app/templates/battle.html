@@ -4,7 +4,62 @@
 
 {% block content %}
 
-    <section class="arena">
+    <section class="battle">
+        <h1>Batalla Pokemon</h1>
         
+        {% if error %}
+            <p class="empty">{{ error }}</p>
+
+        {% elif pokemon %}
+
+            <h2>Entrenador: {{ trainer }}</h2>
+
+            <div class="battle__arena">
+                <article class="battle__pokemon">
+                    <h2>{{ pokemon.name | capitalize }}</h2>
+                    <ul class="types">
+                        {% for t in pokemon.types %}
+                        <li class="type type--{{ t }}">{{ t | capitalize }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="battle__stats">
+                        <h3>Estadísticas</h3>
+                        {% for stat in pokemon.stats %}
+                        <p>
+                            {{ stat.name | capitalize }}:
+                            <strong>{{ stat.value }}</strong>
+                        </p>
+                        {% endfor %}
+                    </div>
+                </article>
+
+               <div class="battle__vs">
+                VS
+                </div>
+
+                <article class="battle__pokemon">
+                    <h2>{{ pokemon_rival.name | capitalize }}</h2>
+                    <ul class="types">
+                        {% for t in pokemon_rival.types %}
+                        <li class="type type--{{ t }}">{{ t | capitalize }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="battle__stats">
+                        <h3>Estadísticas</h3>
+                        {% for stat in pokemon_rival.stats %}
+                        <p>
+                            {{ stat.name | capitalize }}:
+                            <strong>{{ stat.value }}</strong>
+                        </p>
+                        {% endfor %}
+                    </div>
+                </article>
+
+            </div>
+
+            
+
     </section>
 {% endblock %}
