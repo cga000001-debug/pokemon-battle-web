@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pokemon.name | capitalize }}{% endblock %}
+
+{% block content %}
+<a class="back" href="{{ url_for('listadoPokemon') }}">‹ Volver al listado</a>
+
+<article class="detail detail--{{ pokemon.types[0] }}">
+    <div class="detail__hero">
+        <div class="detail__title">
+            <p class="detail__id">#{{ pokemon.id }}</p>
+            <h1>{{ pokemon.name | capitalize }}</h1>
+            <ul class="types">
+                {% for t in pokemon.types %}
+                <li class="type type--{{ t }}">{{ t }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <img class="detail__img" src="{{ pokemon.sprites.front_default }}" alt="{{ pokemon.name }}">
+    </div>
+
+    <div class="detail__body">
+        <section class="panel">
+            <h2>Datos</h2>
+            <dl class="facts">
+                <div><dt>Altura</dt><dd>{{ pokemon.height / 10 }} m</dd></div>
+                <div><dt>Peso</dt><dd>{{ pokemon.weight / 10 }} kg</dd></div>
+            </dl>
+        </section>
+
+        <section class="panel">
+            <h2>Estadísticas</h2>
+            <ul class="stats">
+                {% for stat in pokemon.stats %}
+                <li class="stat">
+                    <span class="stat__name">{{ stat.name }}</span>
+                    <span class="stat__value">{{ stat.value }}</span>
+                    <span class="stat__bar">
+                        <span style="width: {{ stat.value / 255 * 100 }}%"></span>
+                    </span>
+                </li>
+                {% endfor %}
+
+                <div class="stats-media">
+                    <span class="stats-media__label">Media de estadísticas</span>
+                    <span class="stats-media__value">
+                        {{ "%.2f"|format(pokemon.media) }}
+                    </span>
+                </div>  
+            </ul>
+        </section>
+
+        <section class="panel panel--wide">
+            <h2>Movimientos</h2>
+            <table class="moves">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Potencia</th>
+                    <th>Precisión</th>
+                </tr>
+                {% for move in pokemon.moves %}
+                <tr>
+                    <td>{{ move.name }}</td>
+                    <td><span class="type type--{{ move.type }}">{{ move.type }}</span></td>
+                    <td>{{ move.power or '-' }}</td>
+                    <td>{{ move.accuracy or '-' }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </div>
+
+    <div class="detail__nav">
+        {% if anterior %}
+        <a class="btn" href="{{ url_for('pokemon', id=anterior.id) }}">‹ {{ anterior.name | capitalize }}</a>
+        {% else %}<span></span>{% endif %}
+        {% if siguiente %}
+        <a class="btn" href="{{ url_for('pokemon', id=siguiente.id) }}">{{ siguiente.name | capitalize }} ›</a>
+        {% endif %}
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Pokemon{% endblock %} · Pokemon</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="{{ url_for('index') }}">
+                <span class="pokeball" aria-hidden="true"></span>
+                <span class="brand__name">Pokemon</span>
+            </a>
+
+            <nav class="nav" aria-label="Principal">
+                <a href="{{ url_for('index') }}"
+                   {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>Inicio</a>
+        </div>
+    </header>
+
+    <main id="contenido" class="container main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 – Mi sitio</p>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>
