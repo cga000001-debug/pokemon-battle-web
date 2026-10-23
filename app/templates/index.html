@@ -5,17 +5,19 @@
 {% block content %}
 
   <section class="form_trainer" >
-    <form method="POST" action="/pokemons">
+    <form method="POST" action="{{ url_for('index') }}">
       <label for="trainer">Trainer:</label>
-      <input id="trainer" name="trainer" type="text" required minlength="3" maxlength="15">
+      <input id="trainer" name="trainer" type="text" placeholder="Introduce el nombre del entrenador (entre 3 y 15 caracteres)" required>
+
+      {% if error %}
+      <p class="form_error">{{ error }}</p>
+      {% endif %}
 
       <button type="submit">Send</button>
     </form>
   </section>
 
   <section class="arena">
-    <a class="btn btn--primary" href="{{ url_for('listadoPokemon') }}">Ver listado de Pokemon</a>
-    
     <img class="arena__pkm" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/382.png" alt="Kyogre">
  
     <div class="arena__center">

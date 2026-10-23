@@ -5,14 +5,18 @@
 {% block content %}
 <section class="section">
 
-    <h1>Bienvenid@, {{ trainer | default('trainer',true) }}</h1>
+    <h1>Bienvenid@, {{ trainer }}</h1>
 
     <section class="form_pokemon" >
-        <form method="POST" action="/battle">
-            <input type="hidden" name="trainer" value="{{ trainer }}">
+        <form method="POST" action="{{ url_for('listadoPokemon', trainer=trainer) }}">
+             <input type="hidden" name="trainer" value="{{ trainer }}">
 
             <label for="pokemon">Escoge tu pokemon:</label>
             <input id="pokemon" name="pokemon" type="text">
+
+            {% if error %}
+            <p class="form_error">{{ error }}</p>
+            {% endif %}
 
             <button type="submit">Send</button>
         </form>
@@ -25,14 +29,12 @@
     <section class="form_filtros">
         <h2>Tipo de Pokemon</h2>
 
-        
-
+    
             <h2>Filtrar por tipo de Pokemon</h2>
             
-            <form method="GET" action="/pokemons" class="form_filtros">
-                <input type="hidden" name="trainer" value="{{ trainer }}">  
+            <form method="GET" action="{{ url_for('listadoPokemon') }}" class="form_filtros">
+                <input type="hidden" name="trainer" value="{{ trainer }}">
                 <input type="hidden" name="media" value="{{ media }}">
-
                 <ul class="types">
                     <li>
                         <button type="submit" name="tipo" value="" class="type {% if not tipo %}seleccionados{% endif %}">
@@ -51,10 +53,9 @@
             </form>
 
             <h2>Filtrar por media de estadísticas</h2>
-            <form method="GET" action="/pokemons" class="form_filtros">
-                <input type="hidden" name="trainer" value="{{ trainer }}">  
+            <form method="GET" action="{{ url_for('listadoPokemon') }}" class="form_filtros">
+                <input type="hidden" name="trainer" value="{{ trainer }}">
                 <input type="hidden" name="tipo" value="{{ tipo }}">
-
                 <ul  class="types types--media">
                     <li>
                         <button type="submit" name="media" value="" class="type {% if not media %}seleccionado{% endif %}">

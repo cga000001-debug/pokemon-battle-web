@@ -492,57 +492,64 @@ h3 { font-size: 1.1rem; font-weight: 600; }
 
 /* ---------- Filtros Pokemon ---------- */
 
-.form_filtros {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 20px;
+section.form_filtros {
+    background: var(--surface);
+    padding: 1.5rem 1.8rem;
+    border-radius: var(--radius-l);
     margin-bottom: 2rem;
     border: 2px solid var(--line);
 }
 
 .form_filtros h2 {
     font-size: 1.2rem;
-    margin-bottom: 1rem;
+    margin-bottom: .9rem;
 }
 
 .form_filtros form {
-    margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem;
 }
 
-.form_filtros button {
+.form_filtros form:last-child {
+    margin-bottom: 0;
+}
+
+/* Misma separación en todas las filas de filtros */
+.form_filtros .types {
+    gap: .7rem;
+}
+
+/* ---------- Botones de filtro ---------- */
+
+.form_filtros .type {
     cursor: pointer;
+    font: 700 .9rem var(--font-body);
+    padding: .45rem 1.1rem;
     border: 2px solid transparent;
-    padding: 0.5rem 1rem;
-    transition: 0.2s;
+    opacity: .7;
+    transition: opacity .2s, transform .2s, box-shadow .2s;
 }
 
-.form_filtros button:hover {
-    transform: scale(1.1);
+.form_filtros .type:hover {
+    opacity: 1;
+    transform: translateY(-2px);
 }
 
-/* ---------- Media de estadísticas ---------- */
+/* Colores de la media de estadísticas */
+.form_filtros button[value="baja"]  { background: #e8562a; color: #fff; }
+.form_filtros button[value="media"] { background: #e3b616; color: #3a2f00; }
+.form_filtros button[value="alta"]  { background: #3f9d4a; color: #fff; }
 
-.form_filtros button[value="baja"] {
-    background: #e8562a;
-    color: white;
+/* ---------- Botón seleccionado ---------- */
+
+.form_filtros .type.seleccionado {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 3px var(--surface), 0 0 0 5px var(--navy);
 }
 
-.form_filtros button[value="media"] {
-    background: #e3b616;
-    color: black;
-}
-
-.form_filtros button[value="alta"] {
-    background: #3f9d4a;
-    color: white;
-}
-
-/* Botones seleccionados */
-
-.form_filtros button.seleccionado {
-    border: 3px solid #1f2a44;
-    box-shadow: 0 0 0 2px white, 0 0 0 4px #1f2a44;
-    transform: scale(1.05);
+.form_filtros .type.seleccionado::before {
+    content: "✓";
+    margin-right: .4rem;
 }
 
 /* Separación entre botones de media */
@@ -718,4 +725,12 @@ h3 { font-size: 1.1rem; font-weight: 600; }
     height: 250px;
     object-fit: contain;
     margin: 1rem 0;
+}
+
+/* ---------- Mensaje de error de formulario ---------- */
+.form_error {
+    margin: 0;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--red-dark);
 }
