@@ -734,3 +734,28 @@ section.form_filtros {
     font-weight: 700;
     color: var(--red-dark);
 }
+
+/* Ajustes para el botón de cerrar sesión en la cabecera */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+}
+
+.nav__logout-form {
+    margin: 0;
+    display: flex;
+}
+
+.btn--logout {
+    padding: .35rem .85rem;
+    font-size: .9rem;
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+}
+
+.btn--logout:hover {
+    background: #fff;
+    color: var(--red-dark);
+}
