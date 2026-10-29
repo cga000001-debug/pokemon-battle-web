@@ -8,7 +8,7 @@
     <h1>Bienvenid@, {{ trainer }}</h1>
 
     <section class="form_pokemon" >
-        <form method="POST" action="{{ url_for('listadoPokemon', trainer=trainer) }}">
+        <form method="POST" action="{{ url_for('listadoPokemon') }}">
              <input type="hidden" name="trainer" value="{{ trainer }}">
 
             <label for="pokemon">Escoge tu pokemon:</label>

@@ -19,6 +19,13 @@
             <nav class="nav" aria-label="Principal">
                 <a href="{{ url_for('index') }}"
                    {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>Inicio</a>
+
+            {% if session.trainer %}
+            <form method="POST" action="{{ url_for('logout') }}" class="nav__logout-form">
+                <button type="submit" class="btn btn--logout">Cerrar sesión</button>
+            </form>
+            {% endif %}
+        
         </div>
     </header>
 
