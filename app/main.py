@@ -6,12 +6,14 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", "clave-solo-para-desarrollo")
 
+"""
 RUTA_DATOS = Path(__file__).resolve().parent.parent / "data" / "pokemons-legendary.json"
 
 with RUTA_DATOS.open(encoding="utf-8") as f:
     DATOS = json.load(f)
 for pokemon in DATOS:
     pokemon["media"] = sum(stat["value"] for stat in pokemon["stats"]) / len(pokemon["stats"])
+"""
 
 def login_requerido(func):
     @wraps(func)
