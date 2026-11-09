@@ -3,7 +3,7 @@
 {% block title %}{{ pokemon.name | capitalize }}{% endblock %}
 
 {% block content %}
-<a class="back" href="{{ url_for('listadoPokemon') }}">‹ Volver al listado</a>
+<a class="back" href="{{ url_for('pokemon.listadoPokemon') }}">‹ Volver al listado</a>
 
 <article class="detail detail--{{ pokemon.types[0] }}">
     <div class="detail__hero">
@@ -73,10 +73,10 @@
 
     <div class="detail__nav">
         {% if anterior %}
-        <a class="btn" href="{{ url_for('pokemon', id=anterior.id) }}">‹ {{ anterior.name | capitalize }}</a>
+        <a class="btn" href="{{ url_for('pokemon.pokemon', id=anterior.id) }}">‹ {{ anterior.name | capitalize }}</a>
         {% else %}<span></span>{% endif %}
         {% if siguiente %}
-        <a class="btn" href="{{ url_for('pokemon', id=siguiente.id) }}">{{ siguiente.name | capitalize }} ›</a>
+        <a class="btn" href="{{ url_for('pokemon.pokemon', id=siguiente.id) }}">{{ siguiente.name | capitalize }} ›</a>
         {% endif %}
     </div>
 </article>

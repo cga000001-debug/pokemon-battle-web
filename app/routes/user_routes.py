@@ -1,8 +1,8 @@
-from flask import Blueprint, app, redirect, render_template, request, session, url_for
+from flask import Blueprint, redirect, render_template, request, session, url_for
 
 user_bp = Blueprint("user", __name__)
 
-@app.route('/', methods=["GET","POST"])
+@user_bp.route('/', methods=["GET","POST"])
 def index():
     if request.method == "GET":
         return render_template('index.html')
@@ -15,9 +15,9 @@ def index():
         return render_template('index.html', error="El trainer debe tener entre 3 y 15 caracteres.")
 
     session["trainer"] = trainer
-    return redirect(url_for('listadoPokemon')) 
+    return redirect(url_for('pokemon.listadoPokemon')) 
 
-@app.route('/logout', methods=["POST"])
+@user_bp.route('/logout', methods=["POST"])
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('user.index'))

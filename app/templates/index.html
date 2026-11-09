@@ -5,7 +5,7 @@
 {% block content %}
 
   <section class="form_trainer" >
-    <form method="POST" action="{{ url_for('index') }}">
+    <form method="POST" action="{{ url_for('user.index') }}">
       <label for="trainer">Trainer:</label>
       <input id="trainer" name="trainer" type="text" placeholder="Introduce el nombre del entrenador (entre 3 y 15 caracteres)" required>
 

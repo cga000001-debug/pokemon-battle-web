@@ -10,3 +10,4 @@ class Pokemon:
     types: list
     weight: int
     moves: list
+    media: float = 0.0
