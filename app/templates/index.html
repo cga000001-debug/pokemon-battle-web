@@ -4,14 +4,16 @@
 
 {% block content %}
 
-  <section class="form_trainer" >
-    <form method="POST" action="{{ url_for('index') }}">
-      <label for="trainer">Trainer:</label>
-      <input id="trainer" name="trainer" type="text" placeholder="Introduce el nombre del entrenador (entre 3 y 15 caracteres)" required>
+  <section class="form_trainer">
+    <form method="POST" novalidate>
+      {{ form.hidden_tag() }}
 
-      {% if error %}
-      <p class="form_error">{{ error }}</p>
-      {% endif %}
+      {{ form.trainer.label }}
+      {{ form.trainer(placeholder="Introduce el nombre del entrenador (entre 3 y 15 caracteres)") }}
+
+      {% for error in form.trainer.errors %}
+        <p class="form_error">{{ error }}</p>
+      {% endfor %}
 
       <button type="submit">Send</button>
     </form>

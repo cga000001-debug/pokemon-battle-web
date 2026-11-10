@@ -11,17 +11,17 @@
 <body>
     <header class="site-header">
         <div class="container site-header__inner">
-            <a class="brand" href="{{ url_for('index') }}">
+            <a class="brand" href="{{ url_for('user.index') }}">
                 <span class="pokeball" aria-hidden="true"></span>
                 <span class="brand__name">Pokemon</span>
             </a>
 
             <nav class="nav" aria-label="Principal">
-                <a href="{{ url_for('index') }}"
+                <a href="{{ url_for('user.index') }}"
                    {% if request.endpoint == 'index' %}aria-current="page"{% endif %}>Inicio</a>
 
             {% if session.trainer %}
-            <form method="POST" action="{{ url_for('logout') }}" class="nav__logout-form">
+            <form method="POST" action="{{ url_for('user.logout') }}" class="nav__logout-form">
                 <button type="submit" class="btn btn--logout">Cerrar sesión</button>
             </form>
             {% endif %}

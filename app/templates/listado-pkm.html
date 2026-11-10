@@ -8,8 +8,7 @@
     <h1>Bienvenid@, {{ trainer }}</h1>
 
     <section class="form_pokemon" >
-        <form method="POST" action="{{ url_for('listadoPokemon') }}">
-             <input type="hidden" name="trainer" value="{{ trainer }}">
+        <form method="POST" action="{{ url_for('pokemon.listadoPokemon') }}">
 
             <label for="pokemon">Escoge tu pokemon:</label>
             <input id="pokemon" name="pokemon" type="text">
@@ -32,8 +31,7 @@
     
             <h2>Filtrar por tipo de Pokemon</h2>
             
-            <form method="GET" action="{{ url_for('listadoPokemon') }}" class="form_filtros">
-                <input type="hidden" name="trainer" value="{{ trainer }}">
+            <form method="GET" action="{{ url_for('pokemon.listadoPokemon') }}" class="form_filtros">
                 <input type="hidden" name="media" value="{{ media }}">
                 <ul class="types">
                     <li>
@@ -53,8 +51,7 @@
             </form>
 
             <h2>Filtrar por media de estadísticas</h2>
-            <form method="GET" action="{{ url_for('listadoPokemon') }}" class="form_filtros">
-                <input type="hidden" name="trainer" value="{{ trainer }}">
+            <form method="GET" action="{{ url_for('pokemon.listadoPokemon') }}" class="form_filtros">
                 <input type="hidden" name="tipo" value="{{ tipo }}">
                 <ul  class="types types--media">
                     <li>

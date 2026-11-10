@@ -1,5 +1,5 @@
 <li class="card">
-    <a class="card__link" href="{{ url_for('pokemon', id=pokemon.id) }}">
+    <a class="card__link" href="{{ url_for('pokemon.pokemon', id=pokemon.id) }}">
         <span class="card__id">#{{ pokemon.id }}</span>
         <img class="card__img" src="{{ pokemon.sprites.front_default }}" alt="{{ pokemon.name }}">
         <h3 class="card__name">{{ pokemon.name | capitalize }}</h3>
