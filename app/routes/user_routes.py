@@ -5,6 +5,8 @@ user_bp = Blueprint("user", __name__)
 @user_bp.route('/', methods=["GET","POST"])
 def index():
     if request.method == "GET":
+        if "trainer" in session:
+            return redirect(url_for('pokemon.listadoPokemon'))
         return render_template('index.html')
 
     trainer = request.form.get("trainer","").strip()

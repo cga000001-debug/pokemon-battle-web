@@ -1,2 +1,5 @@
 venv/
 requirements.txt
+flask_session/
+__pycache__/
+*.pyc
