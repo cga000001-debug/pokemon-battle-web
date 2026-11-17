@@ -20,4 +20,4 @@ app.register_blueprint(pokemon_bp, url_prefix="/pokemons")
 app.register_blueprint(battle_bp, url_prefix="/battle")
 
 if __name__ == '__main__':
-    app.run(port=8080)
+    app.run(debug=True, port=8080) 
