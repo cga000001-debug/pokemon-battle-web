@@ -21,7 +21,7 @@ def listadoPokemon():
         elif elegido is None:
             error = "Pokemon no encontrado."
         else:
-            rival = random.choice([p for p in POKEMON_SERVICE.get_all_pokemon() if p.id != elegido.id])
+            rival = random.choice([p for p in POKEMON_SERVICE.get_all_pokemons() if p.id != elegido.id])
             total = len(elegido.moves)
             session["batalla"] = {
                 "pokemon": elegido.id,

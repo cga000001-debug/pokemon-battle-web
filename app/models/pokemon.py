@@ -14,4 +14,7 @@ class Pokemon:
     moves: list[Move]
 
     def get_avg(self):
-        sum(self.stats["value"] for s in self.stats) / len(self.stats)
+        if not self.stats:
+            return 0
+
+        return sum(s["value"] for s in self.stats) / len(self.stats)
